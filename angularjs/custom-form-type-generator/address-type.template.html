@@ -1,0 +1,9 @@
+﻿<div class="address-type-container">
+    <div class="form-group" ng-class="{'form-group-required-asterisk': vm.customItem.required}">
+        <label for="{{vm.customItem.customizationName}}_{{::$id}}" class="col-sm-4 col-md-3 control-label">{{vm.customItem.name}}</label>
+        <div class="col-sm-8 col-md-9">
+            <address-selector form-element-name="{{vm.customItem.customizationName}}" custom-item-id="{{::$id}}" custom-item="vm.customItem"></address-selector>
+            <p class="form-description">{{vm.customItem.description}}</p>
+        </div>
+    </div>
+</div>

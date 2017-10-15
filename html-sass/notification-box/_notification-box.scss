@@ -1,0 +1,199 @@
+﻿@import "../variables";
+
+.notification-icon-container {
+    color: #fff;
+    display: table;
+    height: 40px;
+
+    .notification-icon-badge-container {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+
+        .notification-icon {
+            position: relative;
+            vertical-align: middle;
+            font-size: 30px;
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 0;
+            right: -8px;
+            background-color: $msen-alert-important;
+            color: #fff;
+            font-size: 12px;
+            font-weight: normal;
+        }
+    }
+
+    .notification-icon-text {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 8px;
+
+        &.hidden-1305 {
+            @media(max-width: 1305px) {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.navbar-notification.navbar-nav > li > a {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+
+/* Overrides Bootstrap .navbar-right and prevents notification menu from becoming floated to the left */
+@media (max-width: 767px) {
+    .navbar-nav.navbar-notification.navbar-right {
+        float: right !important;
+        margin: 0;
+    }
+}
+
+/* Overrides to Bootstrap default .dropdown-menu for the .notification-dropdown-menu */
+.dropdown-menu.notification-dropdown-menu {
+    padding: 0 4px 0 4px !important;
+    overflow: hidden;
+    background-color: #282828;
+    border: 2px solid #515151;
+}
+
+
+/* Overrides Bootstrap .dropdown-menu and prevents notification-dropdown-menu from becoming a collapsed menu on mobile */
+@media (max-width: 767px) {
+    .navbar-nav .open .dropdown-menu.notification-dropdown-menu {
+        position: absolute;
+        float: left;
+        background-color: #282828;
+        border: 2px solid #515151;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    }
+}
+
+@media (max-width:767px) {
+    .navbar-nav .open .dropdown-menu.notification-dropdown-menu {
+        right: -60px;
+        width: 280px;
+    }
+}
+
+@media (min-width:768px) {
+    .navbar-nav .open .dropdown-menu.notification-dropdown-menu {
+        width: 400px;
+        right: -175px;
+    }
+}
+
+@media (min-width: 1305px) {
+    /* Code to center the dropdown menu on desktops*/
+    .navbar-nav .open .dropdown-menu.notification-dropdown-menu {
+        width: 400px;
+        right: -135px;
+    }
+}
+
+/* Override Bootstrap .dropdown-menu to keep the .notification-dropdown-menu aligned to the left on mobile */
+@media (max-width: 767px) {
+    .navbar-right .dropdown-menu.notification-dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+}
+
+.notification-dialog {
+    white-space: normal;
+    color: #fff;
+    font-weight: normal;
+}
+
+.notification-title-container {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.notification-title {
+    display: inline-block;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.notification-close-button {
+    float: right;
+    margin-top: -4px;
+    color: #c1c1c1;
+
+    &:hover, &:focus, &.focus {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.notification-list {
+    width: 100%;
+    max-height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.notification-item {
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding: 8px;
+    width: 100%;
+    background: #fff;
+    color: #000;
+
+    &.is-read {
+        color: #7c7c7c;
+    }
+}
+
+.notification-item-close-button {
+    float: right;
+    margin-top: -6px;
+    margin-right: -8px;
+    color: $msen-primary;
+
+    &:hover, &:focus, &.focus {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.notification-date {
+    color: #000;
+    font-size: smaller;
+}
+
+.notification-subject {
+    color: #7c7c7c;
+
+    &.is-new {
+        color: $msen-primary;
+        font-weight: bold;
+    }
+}
+
+.notification-item.hover:hover {
+    background: $msen-primary;
+
+    a, a:hover {
+        text-decoration: none;
+    }
+
+    .notification-date,
+    .notification-subject {
+        color: #fff;   
+    }
+
+    .notification-item-close-button {
+        color: #fff;
+    }
+}
+
+

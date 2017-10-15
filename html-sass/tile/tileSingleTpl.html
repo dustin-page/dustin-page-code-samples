@@ -1,0 +1,254 @@
+﻿<script id="tileSingleTpl" type="text/template">
+
+    <div class="tile tile-brick tile-container {{#tileTypeFullVideo}}tile-video{{/tileTypeFullVideo}} {{#tileBGImageUrl}}title-bottom{{/tileBGImageUrl}}{{^tileBGImageUrl}}title-middle{{/tileBGImageUrl}} category-{{TopLevelCategory}}  {{^tileTypeFullVideo}}{{#Qualification.IsMet}}show-metrics{{/Qualification.IsMet}}{{/tileTypeFullVideo}}" data-token="{{Token}}" data-tile-type="{{Story.Type}}" data-recommended="{{IsRecommendation}}">
+        {{#tileTypeFullVideo}}
+        <div class="video-icon-wrapper">
+            <span class="ezicon ezicon-play"></span>
+        </div>
+        {{#Story.HiDefUrl}}
+        <button class="btn btn-link btn-videoquality"><span class="glyphicon glyphicon-hd-video"></span></button>
+        {{/Story.HiDefUrl}}
+        {{/tileTypeFullVideo}}
+
+        <div class="tile-brick__header tile-brick__header__left">
+            {{#Story.AllowFavorite}}
+            <div class="favorite-container">
+                <div class="tile-favorite-status">
+                    <span class="ezicon ezicon-favorite {{#IsFavorite}}favorite-active{{/IsFavorite}} js-click-favorite" data-toggle="tooltip" data-container="body" data-placement="top" title="{{Story.Localizations.AddToFavorites}}"></span>
+                    <span class="sr-only">{{Story.Localizations.AddToFavorites}}</span>
+                </div>
+                <div class="tile-favorite-count {{#IsFavorite}}hidden{{/IsFavorite}}">
+                    <span>{{Story.FavoriteCount}}</span>
+                </div>
+            </div>
+            {{/Story.AllowFavorite}}
+        </div>
+
+        <div class="tile-brick__header tile-brick__header__right">
+
+            {{#ShowRequestSession}}
+            <div class="availability-indicator-container">
+                {{#HasAvailabilityExact}}
+                <div class="availability-indicator">
+                    <div class="shape-circle availability-match"><span class="ezicon ezicon-calendar2"></span></div>
+                </div>
+                {{/HasAvailabilityExact}}
+                {{#HasAvailabilityFlexible}}
+                <div class="availability-indicator">
+                    <div class="shape-circle availability-flexible"><span class="ezicon ezicon-calendar2"></span></div>
+                </div>
+                {{/HasAvailabilityFlexible}}
+                {{#HasAvailabilityPrivate}}
+                <div class="availability-indicator">
+                    <div class="shape-circle availability-private"><span class="ezicon ezicon-calendar2"></span></div>
+                </div>
+                {{/HasAvailabilityPrivate}}
+            </div>
+            {{/ShowRequestSession}}
+
+            {{#tileTypeFullVideo}}
+            <a href="{{Story.Url}}">
+                {{/tileTypeFullVideo}}
+                <div class="tile-data-wrapper">
+                    <!--STATUS-->
+                    {{#CompletionStatusIncomplete}}
+                    <div class="tile-status">
+                        <span class="ezicon ezicon-{{CompletionStatus}}"></span>
+                        <span class="sub-status">{{StatusProgress}}</span>
+                    </div>
+                    {{/CompletionStatusIncomplete}}
+                    {{#CompletionStatusCompleted}}
+                    <div class="tile-status">
+                        <span class="ezicon ezicon-{{CompletionStatus}}"></span>
+                        <span class="sub-status">{{StatusComplete}}</span>
+                    </div>
+                    {{/CompletionStatusCompleted}}
+                    {{#CompletionStatusFailed}}
+                    <div class="tile-status">
+                        <span class="ezicon ezicon-{{SuccessStatus}}"></span>
+                        <span class="sub-status">{{StatusFail}}</span>
+                    </div>
+                    {{/CompletionStatusFailed}}
+
+                    {{#ShowEventDate}}
+                    <div class="tile-data">
+                        <span>{{ Story.Date }}</span>
+                        <span class="sub-status">{{EventKey}}</span>
+                    </div>
+                    {{/ShowEventDate}}
+                </div>
+                {{#tileTypeFullVideo}}
+            </a>
+            {{/tileTypeFullVideo}}
+        </div>
+
+        <div class="tile-brick__content">
+            {{#Qualification.IsMet}}
+
+
+            <div class="bgImgContainer {{#tileBGImageUrl}}{{^tileTypeFullVideo}}zoomImage{{/tileTypeFullVideo}}{{/tileBGImageUrl}}" data-original="{{#tileBGImageUrl}}{{tileBGImageUrl}}{{/tileBGImageUrl}}">
+                {{#tileTypeFullVideo}}
+                <video controls>
+                    <source src="{{Story.ItemUrl}}" class="video-sd" type="video/mp4">
+                    {{#Story.HiDefUrl}}
+                    <source src="{{Story.HiDefUrl}}" class="video-hd" type="video/mp4">
+                    {{/Story.HiDefUrl}}
+                </video>
+                {{/tileTypeFullVideo}}
+            </div>
+            {{/Qualification.IsMet}}
+        </div>
+
+        <div class="tile-brick__toolbar darken">
+            <div class="tile-brick__toolbar__header-container">
+                <div class="tile-brick__toolbar__header__left">
+                    {{#ShowLevelIndicator}}
+                    {{#Story.HasLevelOfDifficultyValue}}
+                    <div class="level-container">
+                        <div class="level-label {{Story.LevelOfDifficulty}}-color">{{Story.LevelOfDifficultValue}}</div>
+                    </div>
+                    {{/Story.HasLevelOfDifficultyValue}}
+                    {{/ShowLevelIndicator}}
+                </div>
+
+                <div class="tile-brick__toolbar__header__right">
+                    {{#ShowBadgesPointsContainer}}
+                    <div class="tile-data-wrapper">
+                        <div class="tile-data">
+                            <div class="tile-badge-points-container">
+                                <div class="row no-gutters">
+                                    <div class="col-xs-12 text-center">
+                                        {{#Story.HasBadge}}
+                                        <div class="badge-container">
+                                            <img class="badge-image" src="{{Badge.BadgeThumbnailUrl}}" alt="" />
+                                        </div>
+                                        {{/Story.HasBadge}}
+                                        {{#Story.HasPoints}}
+                                        <div class="points-container">
+                                            <div class="points-description">{{Story.Points}}</div>
+                                            <div class="points-label">{{Story.Localizations.Points}}</div>
+                                        </div>
+                                        {{/Story.HasPoints}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/ShowBadgesPointsContainer}}
+                </div>
+
+            </div>
+
+            <div class="tile-brick__toolbar__footer-container">
+                <div class="tile-brick__toolbar__footer__title">
+                    {{#Qualification.IsMet}}
+                    <h3>
+                        {{#Story.AvatarUrl}}
+                        <div class="user-image">
+                            <div class="user-tile-image img-circle" style="background-image: url({{Story.AvatarUrl}})"></div>
+                        </div>
+                        {{/Story.AvatarUrl}}
+                        {{#Story.SubTitle}}
+                        <span>{{Story.SubTitle}}</span>
+                        {{/Story.SubTitle}}
+                        {{Story.Title}}
+                        {{#Story.IsPartner}}
+                        <img src="/Assets/images/icon-verified.png" class="user-tile-verified-icon">
+                        {{/Story.IsPartner}}
+                        {{#Story.HasPartner}}
+                        <img src="/Assets/images/icon-verified.png" class="user-tile-verified-icon">
+                        {{/Story.HasPartner}}
+                        {{#Story.IsLiteracyMember}}
+                        <img src="/Assets/images/icon-literacy-campaign.png" class="user-tile-literacy-campaign-icon">
+                        {{/Story.IsLiteracyMember}}
+                    </h3>
+                    {{/Qualification.IsMet}}
+                    {{^Qualification.IsMet}}
+                    <div class="tile-brick__overlay">
+                        <h3>
+                            {{#Story.SubTitle}}
+                            <span>{{Story.SubTitle}}</span>
+                            {{/Story.SubTitle}}
+                            {{Story.Title}}
+                        </h3>
+                        <div class="tile-requirements">
+                            <div>{{Qualification.Explanation}}</div>
+                            <ul class="list-requirements">
+                                {{#Qualification.Prerequisites}}
+                                <li><a href="{{Prerequisites.Url}}">{{Prerequisites.Title}}</a></li>
+                                {{/Qualification.Prerequisites}}
+                            </ul>
+                        </div>
+                    </div>
+                    {{/Qualification.IsMet}}
+
+                </div>
+                <div class="tile-brick__toolbar__footer__left">
+                    <div class="category-label">
+                        {{Type}}
+                        {{#ShowStatusIndicator}}
+                        {{#HasHierarchy}}
+                        | <span>{{Hierarchy}}</span>
+                        {{/HasHierarchy}}
+                        {{/ShowStatusIndicator}}
+                    </div>
+                    <div class="category-meta">
+                        <ul class="metrics list-inline">
+                            <li>
+                                {{#Qualification.IsMet}}
+                                <a href="#" class="upvote requires-authentication {{Story.VoteClass}}">
+                                    {{/Qualification.IsMet}}
+                                    <span class="ezicon ezicon-up-vote" data-toggle="tooltip" data-container="body" data-placement="top" title="{{Story.Localizations.UpVote}}"></span>
+                                    <span class="sr-only">{{Story.Localizations.UpVote}}</span>
+                                    <span class="upvote-count">{{ Story.UpVoteCount }}</span>
+                                    {{#Qualification.IsMet}}
+                                </a>
+                                {{/Qualification.IsMet}}
+                            </li>
+                            <li>
+                                {{#Qualification.IsMet}}
+                                {{#Story.AllowComments}}
+                                <a href="{{Story.Url}}#CommentTopAnchor">
+                                    {{/Story.AllowComments}}
+                                    {{/Qualification.IsMet}}
+                                    {{#Story.AllowComments}}
+                                    <span class="ezicon ezicon-comments" data-toggle="tooltip" data-container="body" data-placement="top" title="{{Story.Localizations.Comment}}"></span>
+                                    <span class="sr-only">{{Story.Localizations.Comment}}</span>
+                                    {{ Story.FriendlyCommentCount }}
+                                    {{/Story.AllowComments}}
+                                    {{#Qualification.IsMet}}
+                                </a>
+
+                                {{/Qualification.IsMet}}
+                            </li>
+                            <li class="cursor-pointer" role="button" data-toggle="popover" data-container="body" data-token="{{Token}}" data-facebook-link="{{FacebookLink}}" data-twitter-link="{{TwitterLink}}" data-linkedin-link="{{LinkedInLink}}" data-email-link="{{EmailLink}}">
+                                <span class="ezicon ezicon-share" data-toggle="tooltip" data-placement="top" title="{{Story.Localizations.Share}}"></span>
+                                <span class="sr-only">{{Story.Localizations.Share}}</span>
+                                {{ Story.FriendlyShareCount }}
+                            </li>
+                            {{#ShowViewCount}}
+                            <li>
+                                <span>{{ Story.FriendlyViewCount }}</span>
+                                <span class="sub-status">{{ViewKey}}</span>
+                            </li>
+                            {{/ShowViewCount}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="tile-brick__toolbar__footer__right">
+
+                </div>
+            </div>
+
+        </div>
+
+        {{^tileTypeFullVideo}}
+        <a href="{{Story.Url}}" class="tile-brick__overlay">
+        {{/tileTypeFullVideo}}
+
+        {{^tileTypeFullVideo}}
+        </a>
+        {{/tileTypeFullVideo}}
+
+    </div>
+</script>

@@ -1,0 +1,32 @@
+<script id="notificationsLayoutTpl" type="text/template">
+    <div class="notification-dialog">
+        <div class="notification-title-container">
+            <h6 class="notification-title">
+                {{Title}}
+            </h6>
+            <span class="btn btn-sm notification-close-button">X</span>
+        </div>
+        
+        <div class="notification-list">
+            {{#Notifications}}
+                {{#Notification}}
+                <div class="notification-item {{#Url}}hover{{/Url}}">
+                    {{#CanDelete}}
+                    <span class="btn btn-sm notification-item-close-button" onclick="OnNotificationDelete(this)" data-alertid="{{EZAlertId}}" data-is-new="{{IsNew}}">X</span>
+                    {{/CanDelete}}
+                    {{#Url}}
+                    <a href="{{Url}}" onclick="OnNotificationClick(this)" data-alertid="{{EZAlertId}}">
+                        <div class="notification-date">{{Date}}</div>
+                        <div class="notification-subject {{#IsNew}}is-new{{/IsNew}}">{{Subject}}</div>
+                    </a>
+                    {{/Url}}
+                    {{^Url}}
+                    <div class="notification-date">{{Date}}</div>
+                    <div class="notification-subject {{#IsNew}}is-new{{/IsNew}}">{{Subject}}</div>
+                    {{/Url}}
+                </div>
+               {{/Notification}}
+            {{/Notifications}}
+        </div>
+    </div>
+</script>

@@ -1,0 +1,9 @@
+﻿<div class="text-type-container">
+    <div class="form-group" ng-class="{'form-group-required-asterisk': vm.customItem.required}">
+        <label for="{{vm.customItem.customizationName}}_{{::$id}}_select_one" class="col-sm-4 col-md-3 control-label">{{vm.customItem.name}}</label>
+        <div class="col-sm-8 col-md-9">
+            <customization-list custom-item-id="{{::$id}}" custom-item='vm.customItem' dropdown-list='vm.customItem.optionList' customize-state="vm.customizeState"></customization-list>
+            <p ng-if="vm.customItem.description" class="form-description">{{vm.customItem.description}}</p>
+        </div>
+    </div>
+</div>
